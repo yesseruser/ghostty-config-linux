@@ -1,0 +1,26 @@
+font-family = CascaydiaMono Nerd Font
+theme = Galizur
+window-padding-x = 1
+window-padding-y = 1
+mouse-hide-while-typing = true
+
+# Config stuff
+keybind = ctrl+shift+c>r=reload_config
+
+# New stuff
+keybind = ctrl+n>t=new_tab
+keybind = ctrl+n>s=new_split:right
+keybind = ctrl+tab=next_tab
+keybind = ctrl+shift+tab=previous_tab
+
+# Tab switching
+keybind = ctrl+t>one=goto_tab:1
+keybind = ctrl+t>two=goto_tab:2
+keybind = ctrl+t>three=goto_tab:3
+keybind = ctrl+t>four=goto_tab:4
+keybind = ctrl+t>five=goto_tab:5
+keybind = ctrl+t>six=goto_tab:6
+keybind = ctrl+t>seven=goto_tab:7
+keybind = ctrl+t>eight=goto_tab:8
+keybind = ctrl+t>nine=goto_tab:9
+keybind = ctrl+t>zero=goto_tab:0
