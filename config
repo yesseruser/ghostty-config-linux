@@ -13,6 +13,10 @@ keybind = ctrl+n>s=new_split:right
 keybind = ctrl+tab=next_tab
 keybind = ctrl+shift+tab=previous_tab
 
+# Close stuff
+keybind = ctrl+r>t=close_tab
+keybind = ctrl+r>s=close_surface
+
 # Tab switching
 keybind = ctrl+t>one=goto_tab:1
 keybind = ctrl+t>two=goto_tab:2
