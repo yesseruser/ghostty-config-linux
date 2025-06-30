@@ -29,3 +29,6 @@ keybind = ctrl+t>physical:seven=goto_tab:7
 keybind = ctrl+t>physical:eight=goto_tab:8
 keybind = ctrl+t>physical:nine=goto_tab:9
 keybind = ctrl+t>physical:zero=goto_tab:10
+
+# Misc stuff
+keybind = ctrl+shift+c=copy_to_clipboard
