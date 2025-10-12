@@ -32,3 +32,6 @@ keybind = ctrl+t>physical:zero=goto_tab:10
 
 # Misc stuff
 keybind = ctrl+shift+c=copy_to_clipboard
+
+# Shaders
+custom-shader = shaders/cursor_smear.glsl
