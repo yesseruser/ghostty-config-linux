@@ -5,7 +5,7 @@ window-padding-y = 1
 mouse-hide-while-typing = true
 
 # Config stuff
-keybind = ctrl+shift+c>r=reload_config
+keybind = ctrl+shift+,=reload_config
 
 # New stuff
 keybind = ctrl+n>t=new_tab
