@@ -9,8 +9,10 @@ keybind = ctrl+shift+c>r=reload_config
 
 # New stuff
 keybind = ctrl+n>t=new_tab
-keybind = ctrl+n>s=new_split:right
-keybind = ctrl+n>v=new_split:down
+keybind = ctrl+n>s>w=new_split:right
+keybind = ctrl+n>s>a=new_split:left
+keybind = ctrl+n>s>s=new_split:down
+keybind = ctrl+n>s>d=new_split:right
 keybind = ctrl+tab=next_tab
 keybind = ctrl+shift+tab=previous_tab
 
