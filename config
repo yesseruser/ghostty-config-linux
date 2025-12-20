@@ -9,10 +9,10 @@ keybind = ctrl+shift+c>r=reload_config
 
 # New stuff
 keybind = ctrl+n>t=new_tab
-keybind = ctrl+n>s>w=new_split:right
-keybind = ctrl+n>s>a=new_split:left
-keybind = ctrl+n>s>s=new_split:down
-keybind = ctrl+n>s>d=new_split:right
+keybind = ctrl+n>s>h=new_split:left
+keybind = ctrl+n>s>j=new_split:down
+keybind = ctrl+n>s>k=new_split:up
+keybind = ctrl+n>s>l=new_split:right
 keybind = ctrl+tab=next_tab
 keybind = ctrl+shift+tab=previous_tab
 
@@ -31,6 +31,12 @@ keybind = ctrl+t>physical:seven=goto_tab:7
 keybind = ctrl+t>physical:eight=goto_tab:8
 keybind = ctrl+t>physical:nine=goto_tab:9
 keybind = ctrl+t>physical:zero=goto_tab:10
+
+# Split switching
+keybind = ctrl+shift+h=goto_split:left
+keybind = ctrl+shift+j=goto_split:down
+keybind = ctrl+shift+k=goto_split:up
+keybind = ctrl+shift+l=goto_split:right
 
 # Misc stuff
 keybind = ctrl+shift+c=copy_to_clipboard
