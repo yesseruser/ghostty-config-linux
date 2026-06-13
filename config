@@ -1,6 +1,6 @@
 config-file = ?../../.cache/wal/ghostty.conf
 
-font-family = JetBrains Mono
+font-family = JetBrains Mono NF
 theme = Gruvbox Material Dark
 window-padding-x = 1
 window-padding-y = 1
