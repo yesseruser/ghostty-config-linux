@@ -11,6 +11,7 @@ keybind = ctrl+shift+,=reload_config
 
 # New stuff
 keybind = ctrl+n>t=new_tab
+keybind = ctrl+n>w=new_window
 keybind = ctrl+n>s>h=new_split:left
 keybind = ctrl+n>s>j=new_split:down
 keybind = ctrl+n>s>k=new_split:up
