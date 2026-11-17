@@ -20,8 +20,8 @@ keybind = ctrl+tab=next_tab
 keybind = ctrl+shift+tab=previous_tab
 
 # Close stuff
-keybind = ctrl+r>t=close_tab
-keybind = ctrl+r>s=close_surface
+keybind = ctrl+d>t=close_tab # Remove tab
+keybind = ctrl+d>s=close_surface # Remove surface
 
 # Tab switching
 keybind = ctrl+t>physical:one=goto_tab:1
