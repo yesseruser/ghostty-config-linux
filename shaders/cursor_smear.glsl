@@ -44,15 +44,6 @@ float antialising(float distance) {
     return 1. - smoothstep(0., norm(vec2(2., 2.), 0.).x, distance);
 }
 
-float determineStartVertexFactor(vec2 a, vec2 b) {
-    // Conditions using step
-    float condition1 = step(b.x, a.x) * step(a.y, b.y); // a.x < b.x && a.y > b.y
-    float condition2 = step(a.x, b.x) * step(b.y, a.y); // a.x > b.x && a.y < b.y
-
-    // If neither condition is met, return 1 (else case)
-    return 1.0 - max(condition1, condition2);
-}
-
 vec2 getRectangleCenter(vec4 rectangle) {
     return vec2(rectangle.x + (rectangle.z / 2.), rectangle.y - (rectangle.w / 2.));
 }
@@ -80,25 +71,35 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord)
     vec4 currentCursor = vec4(norm(iCurrentCursor.xy, 1.), norm(iCurrentCursor.zw, 0.));
     vec4 previousCursor = vec4(norm(iPreviousCursor.xy, 1.), norm(iPreviousCursor.zw, 0.));
 
-    // When drawing a parellelogram between cursors for the trail i need to determine where to start at the top-left or top-right vertex of the cursor
-    float vertexFactor = determineStartVertexFactor(currentCursor.xy, previousCursor.xy);
-    float invertedVertexFactor = 1.0 - vertexFactor;
+    // The trail is a band centered on the path between the cursor centers.
+    // It starts at the previous cursor's center and ends at the current
+    // cursor's center, so the visible part stops at the start edge of the
+    // new cursor when moving right/down and at its end edge when moving
+    // up/left (the cursor itself is drawn on top of the band).
+    vec2 centerCC = getRectangleCenter(currentCursor);
+    vec2 centerCP = getRectangleCenter(previousCursor);
+    vec2 centerDelta = centerCC - centerCP;
+    float lineLength = length(centerDelta);
+    vec2 dir = lineLength > 0.0001 ? centerDelta / lineLength : vec2(1.0, 0.0);
+    vec2 perp = vec2(-dir.y, dir.x);
 
-    // Set every vertex of my parellogram
-    vec2 v0 = vec2(currentCursor.x + currentCursor.z * vertexFactor, currentCursor.y - currentCursor.w);
-    vec2 v1 = vec2(currentCursor.x + currentCursor.z * invertedVertexFactor, currentCursor.y);
-    vec2 v2 = vec2(previousCursor.x + currentCursor.z * invertedVertexFactor, previousCursor.y);
-    vec2 v3 = vec2(previousCursor.x + currentCursor.z * vertexFactor, previousCursor.y - previousCursor.w);
+    // Cursor extent measured perpendicular to the path, so the band is as
+    // wide as the cursor (full height for a horizontal move, full width for
+    // a vertical move) and centered on the cursor centers.
+    float acrossCC = (abs(perp.x) * currentCursor.z + abs(perp.y) * currentCursor.w) * 0.5;
+    float acrossCP = (abs(perp.x) * previousCursor.z + abs(perp.y) * previousCursor.w) * 0.5;
+
+    // Set every vertex of the parallelogram
+    vec2 v0 = centerCP + perp * acrossCP;
+    vec2 v1 = centerCC + perp * acrossCC;
+    vec2 v2 = centerCC - perp * acrossCC;
+    vec2 v3 = centerCP - perp * acrossCP;
 
     float sdfCurrentCursor = getSdfRectangle(vu, currentCursor.xy - (currentCursor.zw * offsetFactor), currentCursor.zw * 0.5);
     float sdfTrail = getSdfParallelogram(vu, v0, v1, v2, v3);
 
     float progress = clamp((iTime - iTimeCursorChange) / DURATION, 0.0, 1.0);
     float easedProgress = ease(progress);
-    // Distance between cursors determine the total length of the parallelogram;
-    vec2 centerCC = getRectangleCenter(currentCursor);
-    vec2 centerCP = getRectangleCenter(previousCursor);
-    float lineLength = distance(centerCC, centerCP);
 
     vec4 newColor = vec4(fragColor);
 
